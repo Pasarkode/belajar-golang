@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+var global string
+
 func main()  {
 	//integer untuk bilangan bulat
 	var i int
@@ -15,6 +17,8 @@ func main()  {
 	f = 3.14
 	//untuk variable string dibutuhkan tanda kutip("")
 	s = "Saya Taufik R. Firdaus"
+	//ini merupakan variable global. variable yang dapat dipanggil difungsi  mana saja
+	global = "Saya variable global"
 	//untuk menampilkan isi variable tidak memerlukan tanda kutip("")
 	fmt.Println(i)
 
@@ -23,4 +27,6 @@ func main()  {
 	fmt.Println(i, f)
 
 	fmt.Println("Halo dunia... ",s)
+
+	fmt.Println(global)
 }
