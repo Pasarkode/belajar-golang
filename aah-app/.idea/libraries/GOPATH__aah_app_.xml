@@ -1,0 +1,33 @@
+<component name="libraryTable">
+  <library name="GOPATH &lt;aah-app&gt;">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../gopkg.in" />
+      <root url="file://$PROJECT_DIR$/../honnef.co" />
+      <root url="file://$PROJECT_DIR$/../github.com" />
+      <root url="file://$PROJECT_DIR$/../golang.org" />
+      <root url="file://$PROJECT_DIR$/../Go-Lang-MySQL-CRUD" />
+      <root url="file://$PROJECT_DIR$/../blog-app" />
+      <root url="file://$PROJECT_DIR$/../sourcegraph.com" />
+      <root url="file://$PROJECT_DIR$/../belajar-golang" />
+      <root url="file://$PROJECT_DIR$/../aahframework.org" />
+      <root url="file://$PROJECT_DIR$/../latihan" />
+      <root url="file://$PROJECT_DIR$/../belajarGo" />
+    </CLASSES>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../gopkg.in" />
+      <root url="file://$PROJECT_DIR$/../honnef.co" />
+      <root url="file://$PROJECT_DIR$/../github.com" />
+      <root url="file://$PROJECT_DIR$/../golang.org" />
+      <root url="file://$PROJECT_DIR$/../Go-Lang-MySQL-CRUD" />
+      <root url="file://$PROJECT_DIR$/../blog-app" />
+      <root url="file://$PROJECT_DIR$/../sourcegraph.com" />
+      <root url="file://$PROJECT_DIR$/../belajar-golang" />
+      <root url="file://$PROJECT_DIR$/../aahframework.org" />
+      <root url="file://$PROJECT_DIR$/../latihan" />
+      <root url="file://$PROJECT_DIR$/../belajarGo" />
+    </SOURCES>
+    <excluded>
+      <root url="file://$PROJECT_DIR$" />
+    </excluded>
+  </library>
+</component>
