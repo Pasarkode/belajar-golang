@@ -3,12 +3,12 @@ package main
 import (
 	"fmt"
 	"github.com/anaskhan96/soup"
-	"os"
 	"log"
 	"database/sql"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/coopernurse/gorp"
 	"strings"
+	"os"
 )
 
 type Novels struct {
@@ -25,7 +25,7 @@ func InitDB() *gorp.DbMap {
 	dbmap.AddTableWithName(Novels{}, "novels")
 
 	err = dbmap.CreateTablesIfNotExists()
-	checkErr(err, "Create tables failed ")
+	checkErr(err, "Create tables failed... ")
 
 	return dbmap
 }
@@ -40,7 +40,7 @@ func parse(url string) {
 	res, err := soup.Get(url)
 
 	if err != nil {
-		os.Exit(1)
+		panic(err)
 	}
 
 	doc := soup.HTMLParse(res)
@@ -51,7 +51,7 @@ func parse(url string) {
 
 		url := "https:"+link.Attrs()["href"]
 
-		go ParseNovel(url)
+		ParseNovel(url)
 	}
 
 }
@@ -66,29 +66,34 @@ func ParseNovel(url string) {
 
 	data := soup.HTMLParse(res)
 
-	getNovel := data.Find("div", "class", "cha-page j_contentWrap")
-	getTitle := getNovel.Find("div", "class", "cha-tit").FindAll("h3")
-	getContent := getNovel.Find("div", "class", "cha-content").FindAll("p")
+	getTitle := data.Find("div", "class", "cha-tit").Find("h3")
+	getContent := data.Find("div", "class", "cha-content").FindAll("p")
 
-	for _, title := range getTitle{
-		chaTit := strings.Split(title.Text(), ": ")
-		chap := chaTit[0]
-		tit := chaTit[1]
-		fmt.Println(tit)
-		var temp []string
-		for _, content := range getContent {
+	chaTit := strings.Split(getTitle.Text(), ": ")
+	chap := chaTit[0]
+	tit := chaTit[1]
+
+	var temp []string
+
+	fmt.Println(chap+": "+tit)
+
+
+	for _, content := range getContent {
+
+		if content.Text() != "" {
 			temp = append(temp, "<p>"+content.Text()+"</p>")
 		}
-		novels := Novels{
-			Chapter:chap,
-			Title:tit,
-			Content:strings.Join(temp, ""),
-		}
 
-		err := dbmap.Insert(&novels)
-		checkErr(err, "Gagal memasukkan novel")
-		fmt.Println("Done!")
 	}
+
+	novels := Novels{
+		Chapter:chap,
+		Title:tit,
+		Content:strings.Join(temp, ""),
+	}
+
+	err = dbmap.Insert(&novels)
+	checkErr(err, "Gagal memasukkan novel")
 
 }
 
@@ -99,7 +104,7 @@ func main() {
 	fmt.Print("Masukkan URL halaman TOC dari https://webnovel.com: ")
 	fmt.Scanln(&url)
 	go parse(url)
-	//go ParseNovel(url)
+	fmt.Println("Done!")
 	fmt.Scanln(&text)
 
 }
