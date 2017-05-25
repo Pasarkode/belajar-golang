@@ -59,7 +59,7 @@ func ParseNovel(url string) {
 		fmt.Println(chaTit)
 		var temp []string
 		for _, content := range getContent {
-			temp = append(temp, content.Text())
+			temp = append(temp, "<p>"+content.Text()+"</p>")
 		}
 		fmt.Println("__________________________________________________________________")
 		fmt.Print(strings.Join(temp, ""))
