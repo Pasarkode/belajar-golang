@@ -100,7 +100,6 @@ func ParseNovel(url string) {
 func main() {
 
 	var url,text string
-	//url = "https://www.webnovel.com/book/7176992105000305"
 	fmt.Print("Masukkan URL halaman TOC dari https://webnovel.com: ")
 	fmt.Scanln(&url)
 	go parse(url)
